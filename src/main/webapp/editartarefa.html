@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarefa</title>
+</head>
+<body>
+    <h2>Editar Tarefa</h2>
+    <form action="editartarefa" method="post" id="formEditarTarefa">
+        <label>ID da Tarefa: <input type="number" name="id" id="campoId" required readonly></label><br>
+        <label>Novo Título: <input type="text" name="titulo" id="campoTitulo"></label><br>
+        <label>Nova Descrição: <input type="text" name="descricao" id="campoDescricao"></label><br>
+        <label>Nova Data: <input type="date" name="data" id="campoData"></label><br>
+        <label>Nova Categoria: 
+            <select name="categoria" id="selectCategoria">
+                <option value="">Selecione</option>
+            </select>
+        </label><br>
+        <input type="submit" value="Editar">
+    </form>
+    <a href="menu.html">Voltar ao menu</a>
+    <script>
+        // Preenche o select de categorias dinamicamente
+        fetch('listarcategorias').then(r=>r.json()).then(categorias=>{
+            let select = document.getElementById('selectCategoria');
+            categorias.forEach(c=>{
+                let opt = document.createElement('option');
+                opt.value = c.nome;
+                opt.textContent = c.nome;
+                select.appendChild(opt);
+            });
+        });
+        // Preenche os campos com os dados da tarefa selecionada
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        if(id){
+            fetch('buscartarefa?id='+id).then(r=>r.json()).then(tarefa=>{
+                if(tarefa && tarefa.id){
+                    document.getElementById('campoId').value = tarefa.id;
+                    document.getElementById('campoTitulo').value = tarefa.titulo || '';
+                    document.getElementById('campoDescricao').value = tarefa.descricao || '';
+                    document.getElementById('campoData').value = tarefa.data || '';
+                    // Aguarda o select ser preenchido antes de selecionar a categoria
+                    setTimeout(()=>{
+                        document.getElementById('selectCategoria').value = tarefa.categoria || '';
+                    }, 200);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

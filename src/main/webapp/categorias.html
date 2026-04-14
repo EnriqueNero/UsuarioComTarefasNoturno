@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Categorias</title>
+</head>
+<body>
+    <h2>Gerenciar Categorias</h2>
+    <div id="listaCategorias"></div>
+    <hr>
+    <h3>Adicionar Categoria</h3>
+    <form action="adicionarcategoria" method="post">
+        <label>Nome da Categoria: <input type="text" name="nome" required></label>
+        <input type="submit" value="Adicionar">
+    </form>
+    <hr>
+    <h3>Editar Categoria</h3>
+    <form action="editarcategoria" method="post">
+        <label>Nome Atual: <input type="text" name="nomeAntigo" required></label>
+        <label>Novo Nome: <input type="text" name="nomeNovo" required></label>
+        <input type="submit" value="Editar">
+    </form>
+    <hr>
+    <h3>Remover Categoria</h3>
+    <form action="removercategoria" method="post">
+        <label>Nome da Categoria: <input type="text" name="nome" required></label>
+        <input type="submit" value="Remover">
+    </form>
+    <br>
+    <a href="menu.html">Voltar ao menu</a>
+    <script>
+        // Carrega e exibe as categorias cadastradas
+        fetch('listarcategorias').then(r=>r.json()).then(categorias=>{
+            let html = '<h3>Categorias Cadastradas</h3><ul>';
+            categorias.forEach(c=>{
+                html += '<li>' + c.nome + '</li>';
+            });
+            html += '</ul>';
+            document.getElementById('listaCategorias').innerHTML = html;
+        });
+    </script>
+</body>
+</html>

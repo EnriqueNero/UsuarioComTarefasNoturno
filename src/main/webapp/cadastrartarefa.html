@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Tarefa</title>
+</head>
+<body>
+    <h2>Cadastrar Tarefa</h2>
+    <form action="cadastrartarefa" method="post">
+        <label>Título: <input type="text" name="titulo" required></label><br>
+        <label>Descrição: <input type="text" name="descricao" required></label><br>
+        <label>Data: <input type="date" name="data"></label><br>
+        <label>Categoria: 
+            <select name="categoria" id="selectCategoria" required>
+                <option value="">Selecione</option>
+            </select>
+        </label><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <a href="menu.html">Voltar ao menu</a>
+    <script>
+        // Preenche o select de categorias dinamicamente
+        fetch('listarcategorias').then(r=>r.json()).then(categorias=>{
+            let select = document.getElementById('selectCategoria');
+            categorias.forEach(c=>{
+                let opt = document.createElement('option');
+                opt.value = c.nome;
+                opt.textContent = c.nome;
+                select.appendChild(opt);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login e Cadastro</title>
+</head>
+<body>
+    <h2>Cadastro</h2>
+    <form action="cadastrarusuario" method="post">
+        <label>Nome: <input type="text" name="nome" required></label><br>
+        <label>Login: <input type="text" name="login" required></label><br>
+        <label>Senha: <input type="password" name="senha" required></label><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <hr>
+    <h2>Login</h2>
+    <form action="logar" method="post">
+        <label>Login: <input type="text" name="login" required></label><br>
+        <label>Senha: <input type="password" name="senha" required></label><br>
+        <input type="submit" value="Logar">
+    </form>
+</body>
+</html>

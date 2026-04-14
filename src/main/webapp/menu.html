@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Principal</title>
+</head>
+<body>
+    <h2>Menu Principal</h2>
+    <ul>
+        <li><a href="cadastrartarefa.html">Cadastrar Tarefa</a></li>
+        <li><a href="vertarefas">Ver Minhas Tarefas</a></li>
+        <li><a href="editarperfil.html">Editar Perfil</a></li>
+        <li><a href="logout">Sair</a></li>
+    </ul>
+    <hr>
+    <div id="adminLinks" style="display:none;">
+        <h3>Administração</h3>
+        <ul>
+            <li><a href="cadastrarusuario.html">Cadastrar Usuário/Admin</a></li>
+            <li><a href="adicionarcategoria.html">Adicionar Categoria</a></li>
+            <li><a href="editarcategoria.html">Editar Categoria</a></li>
+            <li><a href="removercategoria.html">Remover Categoria</a></li>
+        </ul>
+    </div>
+    <script>
+        // Exibe links de admin se o usuário for admin (simulação, ajuste conforme integração)
+        fetch('sessioninfo').then(r=>r.json()).then(data=>{
+            if(data.tipo && data.tipo.toLowerCase()==='admin'){
+                document.getElementById('adminLinks').style.display='block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Remover Categoria</title>
+</head>
+<body>
+    <h2>Remover Categoria</h2>
+    <form action="removercategoria" method="post">
+        <label>Nome da Categoria:
+            <select name="nome" id="selectCategoria" required>
+                <option value="">Selecione</option>
+            </select>
+        </label><br>
+        <input type="submit" value="Remover">
+    </form>
+    <a href="menu.html">Voltar ao menu</a>
+    <script>
+        // Preenche o select de categorias dinamicamente
+        fetch('listarcategorias').then(r=>r.json()).then(categorias=>{
+            let select = document.getElementById('selectCategoria');
+            categorias.forEach(c=>{
+                let opt = document.createElement('option');
+                opt.value = c.nome;
+                opt.textContent = c.nome;
+                select.appendChild(opt);
+            });
+        });
+    </script>
+</body>
+</html>

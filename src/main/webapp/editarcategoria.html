@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Categoria</title>
+</head>
+<body>
+    <h2>Editar Categoria</h2>
+    <form action="editarcategoria" method="post">
+        <label>Nome Atual:
+            <select name="nomeAntigo" id="selectCategoria" required>
+                <option value="">Selecione</option>
+            </select>
+        </label><br>
+        <label>Novo Nome: <input type="text" name="nomeNovo" required></label><br>
+        <input type="submit" value="Editar">
+    </form>
+    <a href="menu.html">Voltar ao menu</a>
+    <script>
+        // Preenche o select de categorias dinamicamente
+        fetch('listarcategorias').then(r=>r.json()).then(categorias=>{
+            let select = document.getElementById('selectCategoria');
+            categorias.forEach(c=>{
+                let opt = document.createElement('option');
+                opt.value = c.nome;
+                opt.textContent = c.nome;
+                select.appendChild(opt);
+            });
+        });
+    </script>
+</body>
+</html>
