@@ -37,7 +37,7 @@ public class DeletarTarefa extends HttpServlet {
                 usuarioLogado.getTarefas().remove(t);
                 deletou=true;
                 out.println("<p>Deletado com sucesso.");
-                // Remover botão duplicado: só exibir após o if
+
                 break;
             }
         }
